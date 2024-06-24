@@ -129,8 +129,6 @@ function checkWinVsComputer() {
 
 function computerMove() {
     if (!gameActive || currentPlayer !== 'O') return;
-    // Placeholder for computer's move logic based on difficulty
-    // This should be replaced with actual logic for different difficulties
     let availableSpots = gameState.map((cell, index) => cell === '' ? index : null).filter(val => val !== null);
     if (availableSpots.length === 0) return;
     let move;
@@ -139,10 +137,10 @@ function computerMove() {
             move = availableSpots[Math.floor(Math.random() * availableSpots.length)]; // Random move
             break;
         case 'medium':
-            // Implement medium difficulty logic
+            // will Implement medium difficulty logic
             break;
         case 'hard':
-            // Implement hard difficulty logic
+            // will Implement hard difficulty logic
             break;
     }
     if (move !== undefined) {
@@ -161,13 +159,13 @@ function playCelebrationSound() {
 function showWinnerAnimation(winnerName) {
     const winnerDisplay = document.createElement('div');
     winnerDisplay.innerText = `${winnerName} Wins!`;
-    winnerDisplay.classList.add('winner-display'); // Apply the animation class
+    winnerDisplay.classList.add('winner-display');
     document.body.appendChild(winnerDisplay);
 
     // Remove the winner display after the animation completes
     setTimeout(() => {
         document.body.removeChild(winnerDisplay);
-    }, 2000); // Adjust time based on animation duration
+    }, 2000);
 }
 
 function handleCellClick(event) {
@@ -198,7 +196,7 @@ function restartGame() {
     updateStatus(`${playerNames[currentPlayer]}'s turn`);
     cells.forEach(cell => {
         cell.innerText = '';
-        cell.classList.remove('winning-cell'); // Remove animation class
+        cell.classList.remove('winning-cell');
     });
 }
 
@@ -210,7 +208,7 @@ function restartGameVsComputer() {
     updateStatus(`${playerName}'s turn`);
     cells.forEach(cell => {
         cell.innerText = '';
-        cell.classList.remove('winning-cell'); // Remove animation class
+        cell.classList.remove('winning-cell');
     });
 }
 
@@ -224,8 +222,7 @@ function undoMove() {
         // Toggle currentPlayer
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         updateStatus(`${playerNames[currentPlayer]}'s turn`);
-
-        // Update the UI to reflect the undone move
+        
         cells.forEach((cell, index) => {
             cell.innerText = gameState[index]; // Update cell text based on gameState
             cell.classList.remove('winning-cell'); // Remove any winning cell highlight
